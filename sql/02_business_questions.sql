@@ -41,4 +41,20 @@ USE nhs_ae;
 -- Gap between best and worst board grew from 18.4 to 45.3 points.
 -- Island boards (Orkney, Western Isles) remain near 95% but have much smaller departments.
 
+-- Q3: Is there a winter pressure pattern?
+-- Type 1 sites, full years 2018-2025 only, so every calendar month covers the same 8 years.
 
+-- SELECT 
+-- MONTH(Month) AS MonthNum,
+-- MONTHNAME(Month) AS MonthName,
+-- ROUND(SUM(NumberOfAttendancesAll) / COUNT(DISTINCT YEAR(Month))) AS AvgAttendances,
+-- ROUND(100 * SUM(NumberWithin4HoursAll) / SUM(NumberOfAttendancesAll) , 1) AS PctWithin4Hours
+-- FROM ae_activity 
+-- WHERE DepartmentType = "Type 1" AND NumberWithin4HoursAll IS NOT NULL AND YEAR(Month) BETWEEN 2018 AND 2025
+-- GROUP BY MONTH(Month), MONTHNAME(Month)
+-- ORDER BY MonthNum;
+
+-- Finding: performance declines every autumn, from 76.4% (Aug) to a low of 71.2% (Dec),
+-- and is best in May-July (~78%). The worst months are not the busiest: August has the
+-- most attendances, December has fewer than average, so winter pressure is not driven
+-- by attendance volume alone. Spring 2020 (COVID) slightly lifts April-May figures.
